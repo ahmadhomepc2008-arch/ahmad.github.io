@@ -352,7 +352,22 @@
         <div class="file-grid" id="hw-list">
             <a href="https://drive.google.com/file/d/11S9JevbFG3qx_a_KGnWeBaxQsNJ4OurW/view?usp=drive_link" target="_blank" class="file-item"><div class="file-info"><div class="file-icon">📝</div><div class="file-name">الواجب الأول - الوحدة الأولى</div></div><div class="btn-view">تحميل</div></a>
         </div>
-
+<div id="hw-open-btn" style="display:none; text-align:center; margin-top:20px;">
+    <div onclick="openHW()" style="
+        background: linear-gradient(135deg, #2ecc71, #27ae60);
+        color: white;
+        padding: 15px 30px;
+        border-radius: 15px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        display: inline-block;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        transition: 0.3s;
+    " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        📢 تم نشر الواجب - اضغط للدخول
+    </div>
+</div>
         <div id="interactive-hw-box" class="interactive-hw">
             <h3 style="text-align: center; color: #FF512F;">📝 واجب تفاعلي: مفردات الوحدة الأولى</h3>
             
@@ -535,7 +550,7 @@ function updateAllTimers() {
     
     if (hwDiff === null) {
         document.getElementById("timer-area").innerHTML = "<h2 class='section-title' style='color:green'>✅ تم نشر الواجب التفاعلي!</h2>";
-        document.getElementById("interactive-hw-box").style.display = 'block';
+        document.getElementById("hw-open-btn").style.display = 'block';
     }
 
     const examDiff = createTimer(new Date("April 7, 2026 17:00:00").getTime(), "exam-countdown");
@@ -559,6 +574,10 @@ let int = setInterval(() => {
         document.getElementById("main-content").style.display = 'block'; 
     }
 }, 20);
+    function openHW() {
+    document.getElementById("interactive-hw-box").style.display = 'block';
+    document.getElementById("hw-open-btn").style.display = 'none';
+}
 </script>
 </body>
 </html>
