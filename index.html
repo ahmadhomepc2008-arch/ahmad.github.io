@@ -7,14 +7,44 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-    /* تكبير الموقع على الشاشات الصغيرة (مثل الهواتف) */
-@media only screen and (max-width: 768px) {
+@media (max-width: 768px) {
     body {
-        transform: scale(2.5); /* تكبير 250% */
-        transform-origin: top left; /* تثبيت من أعلى يسار الصفحة */
-        width: 40%; /* لازم تعوض عرض الصفحة بعد التكبير */
+        font-size: 14px;
+    }
+
+    header h1 {
+        font-size: 22px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr 1fr; /* عمودين بدل 3-4 */
+        gap: 10px;
+    }
+
+    .box {
+        padding: 20px 10px;
+        font-size: 14px;
+    }
+
+    .section-title {
+        font-size: 18px;
+    }
+
+    .file-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .timer-wrapper {
+        flex-wrap: wrap;
     }
 }
+
     /* المتغيرات الأساسية للوضع الفاتح */
     :root {
         --body-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
