@@ -2,6 +2,8 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>الأستاذ أسامة فودة</title>
  <link rel="icon" type="image/png" href="icon.png">
 <link rel="apple-touch-icon" href="icon.png">
@@ -12,42 +14,36 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&display=swap" rel="stylesheet">
 
 <style>
+
+
+/* الحاوية */
+.container {
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  padding: 10px;
+}
+
+/* الصور */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* النصوص */
+h1, h2, p {
+  word-wrap: break-word;
+}
+
+/* تحسين بسيط للموبايل */
 @media (max-width: 768px) {
-    body {
-        font-size: 14px;
-    }
+  body {
+    font-size: 14px;
+  }
 
-    header h1 {
-        font-size: 22px;
-    }
-
-    .container {
-        padding: 10px;
-    }
-
-    .grid {
-        grid-template-columns: 1fr 1fr; /* عمودين بدل 3-4 */
-        gap: 10px;
-    }
-
-    .box {
-        padding: 20px 10px;
-        font-size: 14px;
-    }
-
-    .section-title {
-        font-size: 18px;
-    }
-
-    .file-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-
-    .timer-wrapper {
-        flex-wrap: wrap;
-    }
+  h1 {
+    font-size: 22px;
+  }
 }
 
     /* المتغيرات الأساسية للوضع الفاتح */
@@ -79,7 +75,13 @@
     .theme-toggle { position: absolute; top: 25px; left: 20px; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-family: 'Cairo'; font-weight: bold; backdrop-filter: blur(5px); }
     .theme-toggle:hover { background: rgba(255,255,255,0.4); }
 
-    header h1 { font-size: 36px; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+ 
+
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 24px;
+  }
+}
 
     .news-bar { 
         width: 100%; 
@@ -104,7 +106,6 @@
         to { transform: translateX(100%); }
     }
     
-    .container { padding: 25px; max-width: 900px; margin: auto; }
     .card { background: var(--card-bg); padding: 25px; margin: 20px 0; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid rgba(0,0,0,0.05); }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
     .box { border-radius: 20px; padding: 30px 10px; text-align: center; font-size: 18px; font-weight: bold; color: white; transition: 0.4s; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
