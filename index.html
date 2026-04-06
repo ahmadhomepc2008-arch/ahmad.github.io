@@ -298,9 +298,10 @@ h1, h2, p {
     <img src="https://i.ibb.co/fVs6fZZs/gemini-3-1-flash-image-preview-nano-banana-2-a-removebg-preview.png" id="main-logo">
     <h1>الأستاذ أسامة فودة</h1>
     <div class="news-bar">
-        <span>📢 أهلاً بكم في المنصة الرسمية للأستاذ أسامة فودة 🔥 سيتم رفع واجبات الأسبوع الجديد يوم الاثنين القادم.. تابعونا! ✨</span>
-        <span>📢 أهلاً بكم في المنصة الرسمية للأستاذ أسامة فودة 🔥 سيتم رفع واجبات الأسبوع الجديد يوم الاثنين القادم.. تابعونا! ✨</span>
-    </div>
+    <span id="news-text">
+        📢 أهلاً بكم في المنصة الرسمية للأستاذ أسامة فودة 🔥 سيتم رفع واجبات الأسبوع الجديد يوم الاثنين القادم.. تابعونا! ✨
+    </span>
+</div>
 </header>
 
 <div class="container">
@@ -594,10 +595,16 @@ function updateAllTimers() {
     const hwTarget = new Date("April 6, 2026 17:00:00").getTime();
     const hwDiff = createTimer(hwTarget, "countdown-container");
     
-    if (hwDiff === null) {
-        document.getElementById("timer-area").innerHTML = "<h2 class='section-title' style='color:green'>✅ تم نشر الواجب التفاعلي!</h2>";
-        document.getElementById("hw-open-btn").style.display = 'block';
+   if (hwDiff === null) {
+    document.getElementById("timer-area").innerHTML = "<h2 class='section-title' style='color:green'>✅ تم نشر الواجب التفاعلي!</h2>";
+    document.getElementById("hw-open-btn").style.display = 'block';
+
+    // 🔥 إضافة هذا الجزء الجديد
+    const news = document.getElementById("news-text");
+    if (news) {
+        news.innerText = "🔥 تم نشر الواجب الآن! ادخل وابدأ الحل فوراً 💪";
     }
+}
 
     const examDiff = createTimer(new Date("April 7, 2026 17:00:00").getTime(), "exam-countdown");
     if (examDiff === null) { 
