@@ -212,7 +212,7 @@ body.dark-mode .exam-instructions { background: #2a2a00; color: #ffeb3b; border-
 
         <div id="exam-released-btn" style="display:none; text-align:center; margin-bottom: 20px;">
             <div style="background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; padding: 15px 30px; border-radius: 15px; font-size: 18px; font-weight: bold; display: inline-block; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
-                ✅ تم نزول الامتحان - بالتوفيق!
+                تم تاجيل الامتحان
             </div>
         </div>
 
@@ -239,70 +239,8 @@ body.dark-mode .exam-instructions { background: #2a2a00; color: #ffeb3b; border-
         </div>
 
         <h2 class="section-title">📝 الواجب التفاعلي</h2>
-        <div id="start-hw" style="text-align:center; margin:20px;">
-            <button onclick="startHW()" style="background: linear-gradient(135deg, #FF512F, #DD2476); color: white; padding: 15px 30px; border: none; border-radius: 20px; font-size: 18px; font-weight: bold; cursor: pointer;">
-                ▶️ ابدأ الواجب
-            </button>
-        </div>
+      
 
-        <div id="interactive-hw-box" class="interactive-hw" style="display:none;">
-            <h3 style="text-align: center; color: #FF512F;">📝 واجب تفاعلي: مفردات الوحدة الأولى</h3>
-            
-            <div class="question" data-ans="B">
-                <p>1- Every time we eat out, he always tries to avoid paying his share. He's so...</p>
-                <div class="options">
-                    <button class="option-btn" onclick="selectOpt(this, 'A')">A) strong-willed</button>
-                    <button class="option-btn" onclick="selectOpt(this, 'B')">B) tight-fisted</button>
-                    <button class="option-btn" onclick="selectOpt(this, 'C')">C) absent-minded</button>
-                    <button class="option-btn" onclick="selectOpt(this, 'D')">D) kind-hearted</button>
-                </div>
-            </div>
-            <div class="question" data-ans="B">
-                <p>2- I joined a film club hoping to meet .................... people at school</p>
-                <div class="options">
-                    <button class="option-btn" onclick="selectOpt(this, 'A')">A) absent-minded</button>
-                    <button class="option-btn" onclick="selectOpt(this, 'B')">B) like-minded</button>
-                    <button class="option-btn" onclick="selectOpt(this, 'C')">C) thin-skinned</button>
-                    <button class="option-btn" onclick="selectOpt(this, 'D')">D) highly-strung</button>
-                </div>
-            </div>
-            <div class="question" data-ans="C">
-                <p>3- She's always been really .................... Once she makes up her mind, there's no changing it</p>
-                <div class="options">
-                    <button class="option-btn" onclick="selectOpt(this, 'A')">A) kind-hearted</button>
-                    <button class="option-btn" onclick="selectOpt(this, 'B')">B) thin-skinned</button>
-                    <button class="option-btn" onclick="selectOpt(this, 'C')">C) strong-willed</button>
-                    <button class="option-btn" onclick="selectOpt(this, 'D')">D) highly-strung</button>
-                </div>
-            </div>
-            <div class="question" data-ans="C">
-                <p>4- He's so .................... that some people take advantage of it</p>
-                <div class="options">
-                    <button class="option-btn" onclick="selectOpt(this, 'A')">A) like-minded</button>
-                    <button class="option-btn" onclick="selectOpt(this, 'B')">B) strong-willed</button>
-                    <button class="option-btn" onclick="selectOpt(this, 'C')">C) kind-hearted</button>
-                    <button class="option-btn" onclick="selectOpt(this, 'D')">D) forward-looking</button>
-                </div>
-            </div>
-            <div class="question" data-ans="A">
-                <p>5- I'm so .................... I can't find my glasses even when they're on top of my head!</p>
-                <div class="options">
-                    <button class="option-btn" onclick="selectOpt(this, 'A')">A) absent-minded</button>
-                    <button class="option-btn" onclick="selectOpt(this, 'B')">B) forward-looking</button>
-                    <button class="option-btn" onclick="selectOpt(this, 'C')">C) like-minded</button>
-                    <button class="option-btn" onclick="selectOpt(this, 'D')">D) thin-skinned</button>
-                </div>
-            </div>
-
-            <button class="submit-btn" onclick="checkAnswers()">إرسال الإجابات وتصحيح الواجب</button>
-            <div id="hw-result" style="margin-top:15px; text-align:center; font-weight:bold; font-size:18px;"></div>
-
-            <div id="whatsapp-result-btn" style="display:none; text-align:center; margin-top:15px;">
-                <a id="whatsapp-link" target="_blank" class="whatsapp-btn">
-                    📲 إرسال النتيجة إلى الأستاذ
-                </a>
-            </div>
-        </div>
 
         <h2 class="section-title">📌 الواجبات المتاحة</h2>
         <div class="file-grid" id="hw-list">
@@ -436,43 +374,7 @@ function renderTimer(elementId, distance) {
 
 setInterval(updateTimers, 1000);
 
-// --- نظام الواجب التفاعلي ---
-function startHW() {
-    document.getElementById('start-hw').style.display = 'none';
-    document.getElementById('interactive-hw-box').style.display = 'block';
-}
 
-function selectOpt(btn, choice) {
-    const parent = btn.parentElement;
-    parent.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-}
-
-function checkAnswers() {
-    const questions = document.querySelectorAll('.question');
-    let score = 0;
-    questions.forEach(q => {
-        const correct = q.getAttribute('data-ans');
-        const selected = q.querySelector('.option-btn.selected');
-        const options = q.querySelectorAll('.option-btn');
-        
-        options.forEach(opt => {
-            const currentChoice = opt.innerText.charAt(0);
-            if(currentChoice === correct) opt.classList.add('correct');
-            if(opt.classList.contains('selected') && currentChoice !== correct) opt.classList.add('wrong');
-        });
-
-        if(selected && selected.innerText.charAt(0) === correct) score++;
-    });
-
-    const resDiv = document.getElementById('hw-result');
-    resDiv.innerHTML = `نتيجتك النهائية هي: ${score} من ${questions.length}`;
-    
-    // إرسال للواتساب
-    document.getElementById('whatsapp-result-btn').style.display = 'block';
-    const msg = encodeURIComponent(`مرحباً أستاذ أسامة، لقد أتممت الواجب التفاعلي وحصلت على علامة: ${score} من ${questions.length}`);
-    document.getElementById('whatsapp-link').href = `https://wa.me/962786480572?text=${msg}`;
-}
 </script>
 </body>
 </html>
