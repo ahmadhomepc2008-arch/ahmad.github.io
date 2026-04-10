@@ -1,381 +1,629 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأستاذ أسامة فودة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --main-brown: #3e2723;
+            --soft-brown: #5d4037;
+            --light-brown: #efebe9;
+            --white: #ffffff;
+        }
 
-<title>الأستاذ أسامة فودة</title>
-<link rel="icon" type="image/png" href="icon.png">
-<link rel="apple-touch-icon" href="icon.png">
-<meta name="theme-color" content="#1e3c72">
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #fcfcfc;
+            margin: 0;
+            padding: 0;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&display=swap" rel="stylesheet">
+        .news-header {
+            background-color: var(--main-brown);
+            color: var(--white);
+            padding: 12px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
 
-<style>
-/* الحاوية */
-.container { width: 100%; max-width: 900px; margin: auto; padding: 10px; }
-img { max-width: 100%; height: auto; }
-h1, h2, p { word-wrap: break-word; }
+        .ticker-text {
+            display: inline-block;
+            padding-right: 100%;
+            animation: ticker 20s linear infinite;
+            font-weight: 700;
+        }
 
-@media (max-width: 768px) {
-  body { font-size: 14px; }
-  h1 { font-size: 22px; }
-}
+        @keyframes ticker {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
 
-:root {
-    --body-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    --card-bg: white;
-    --text-main: #2c3e50;
-    --item-bg: #f8f9fa;
-    --header-bg: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-}
+        header {
+            padding: 70px 20px 40px;
+            text-align: center;
+        }
 
-body.dark-mode {
-    --body-bg: #121212;
-    --card-bg: #1e1e1e;
-    --text-main: #e0e0e0;
-    --item-bg: #2d2d2d;
-    --header-bg: #000000;
-}
+        .prof-name {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 900;
+            color: var(--main-brown);
+            margin: 0;
+            line-height: 1.2;
+        }
 
-body { margin: 0; font-family: 'Cairo', Arial, sans-serif; direction: rtl; background: var(--body-bg); color: var(--text-main); transition: 0.3s; }
-#splash { position: fixed; width: 100%; height: 100%; background: url('https://i.ibb.co/8nPr8595/gemini-3-1-flash-image-preview-nano-banana-2-a.png') no-repeat center center; background-size: cover; display: flex; justify-content: center; align-items: center; flex-direction: column; z-index: 9999; color: white; }
-#counter { font-size: 30px; font-weight: bold; background: rgba(0,0,0,0.4); padding: 10px 20px; border-radius: 15px; }
-#main-content { display: none; position: relative; }
+        .divider {
+            width: 80px;
+            height: 4px;
+            background: var(--soft-brown);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
 
-header { background: var(--header-bg); color: white; padding: 30px 20px; text-align: center; position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-#main-logo { position: absolute; top: 15px; right: 20px; width: 80px; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3)); }
+        .quote {
+            font-size: 1.3rem;
+            color: var(--soft-brown);
+            font-weight: 500;
+        }
 
-.theme-toggle { position: absolute; top: 25px; left: 20px; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-family: 'Cairo'; font-weight: bold; backdrop-filter: blur(5px); }
-.theme-toggle:hover { background: rgba(255,255,255,0.4); }
+        .grid-container {
+            max-width: 1100px;
+            margin: 30px auto 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 20px;
+        }
 
-.news-bar { width: 100%; background: linear-gradient(90deg, #e74c3c, #c0392b); overflow: hidden; white-space: nowrap; padding: 10px 0; margin-top: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); display: flex; }
-.news-bar span { display: inline-block; animation: scrollContinuous 25s linear infinite; font-weight: bold; color: white; font-size: 18px; padding-left: 50px; }
-@keyframes scrollContinuous { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+        .premium-btn {
+            position: relative;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 25px 20px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border: 1px solid rgba(62, 39, 35, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 20px rgba(62, 39, 35, 0.1);
+            overflow: hidden;
+            cursor: pointer;
+        }
 
-.card { background: var(--card-bg); padding: 25px; margin: 20px 0; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid rgba(0,0,0,0.05); }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-.box { border-radius: 20px; padding: 30px 10px; text-align: center; font-size: 18px; font-weight: bold; color: white; transition: 0.4s; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
-.box i { font-size: 40px; margin-bottom: 15px; }
-.box:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
+        .premium-btn i {
+            font-size: 2rem;
+            color: var(--main-brown);
+            background: var(--light-brown);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            flex-shrink: 0;
+        }
 
-.file-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
-.file-item { background: var(--item-bg); border-radius: 15px; padding: 18px; display: flex; align-items: center; justify-content: space-between; transition: 0.3s; border-right: 6px solid #3498db; text-decoration: none; color: var(--text-main); }
-.file-item:hover { transform: scale(1.02); border-right-color: #e74c3c; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-.file-info { display: flex; align-items: center; gap: 15px; }
-.file-icon { width: 45px; height: 45px; background: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); color: #2c3e50; }
-.btn-view { background: #3498db; color: white; padding: 6px 15px; border-radius: 8px; font-size: 13px; font-weight: bold; }
+        .premium-btn span {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--main-brown);
+            z-index: 1;
+        }
 
-.interactive-hw { display: block; background: #fff; padding: 20px; border-radius: 15px; margin-top: 20px; border: 2px solid #FF512F; }
-body.dark-mode .interactive-hw { background: #222; border-color: #DD2476; }
-.question { margin-bottom: 25px; }
-.options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
-.option-btn { padding: 10px; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; text-align: center; background: var(--item-bg); color: var(--text-main); transition: 0.3s; font-family: 'Cairo'; }
-.option-btn.selected { background: #FF512F; color: white; border-color: #FF512F; }
-.correct { background: #2ecc71 !important; color: white !important; border-color: #2ecc71 !important; }
-.wrong { background: #e74c3c !important; color: white !important; border-color: #e74c3c !important; }
-.submit-btn { width: 100%; padding: 15px; background: #2ecc71; color: white; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 20px; font-family: 'Cairo'; }
+        .premium-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--main-brown);
+            transition: all 0.5s ease;
+            z-index: 0;
+            border-radius: 20px;
+        }
 
-.exam-card { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; padding: 22px; border-radius: 18px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; text-decoration: none; border-left: 8px solid #f1c40f; }
-.exam-badge { background: #f1c40f; color: #1e3c72; padding: 8px 18px; border-radius: 12px; font-weight: bold; }
+        .premium-btn:hover::before { right: 0; }
+        .premium-btn:hover span { color: var(--white); }
+        .premium-btn:hover i { background: rgba(255, 255, 255, 0.2); color: var(--white); transform: scale(1.1); }
 
-.section-title { font-size: 22px; color: #1e3c72; margin: 30px 0 15px; display: flex; align-items: center; gap: 10px; }
-body.dark-mode .section-title { color: #f1c40f; }
-.section-title::before { content: ""; width: 8px; height: 25px; background: #e74c3c; border-radius: 4px; }
-.back-btn { margin-top: 25px; padding: 12px 25px; background: #2c3e50; color: white; border-radius: 12px; cursor: pointer; display: inline-block; }
-footer { background: #1e3c72; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        .content-section {
+            display: none;
+            max-width: 1100px;
+            margin: 30px auto 60px;
+            padding: 20px;
+        }
 
-.timer-wrapper { display: flex; justify-content: center; gap: 10px; margin: 30px 0; direction: ltr; }
-.flip-card { width: 60px; height: 80px; background: #2c3e50; border-radius: 6px; display: flex; align-items: center; justify-content: center; }
-.flip-val { font-size: 35px; font-weight: 800; color: #f1c40f; }
-.timer-group { display: flex; flex-direction: column; align-items: center; }
-.label { font-size: 11px; margin-top: 8px; color: var(--text-main); }
+        .card-item {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 20px;
+            border-right: 5px solid var(--main-brown);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
 
-.exam-instructions { background: #fff3cd; border: 1px solid #ffeeba; border-radius: 15px; padding: 15px; margin-bottom: 20px; color: #856404; }
-body.dark-mode .exam-instructions { background: #2a2a00; color: #ffeb3b; border-color: #555; }
+        .instruction-card {
+            background: #fff9f0;
+            border-right: 5px solid #ffa000;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            color: #5d4037;
+        }
 
-.contact-wrapper { display: flex; flex-direction: column; gap: 20px; align-items: center; padding: 20px 0; }
-.contact-card-main { width: 100%; background: var(--item-bg); border-radius: 25px; padding: 30px; text-align: center; transition: 0.4s; border: 2px solid transparent; text-decoration: none; color: var(--text-main); display: flex; flex-direction: column; align-items: center; gap: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-.contact-card-main:hover { transform: translateY(-10px); border-color: #25D366; box-shadow: 0 15px 30px rgba(37, 211, 102, 0.2); }
-.contact-icon-circle { width: 70px; height: 70px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 35px; color: white; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4); }
-.contact-text-h3 { margin: 0; font-size: 22px; color: var(--text-main); }
-.contact-text-p { margin: 0; font-size: 16px; opacity: 0.8; }
-.contact-button-action { background: #25D366; color: white; padding: 10px 30px; border-radius: 30px; font-weight: bold; font-size: 18px; transition: 0.3s; }
-.contact-button-action:hover { background: #128C7E; transform: scale(1.05); }
-.contact-support-text { font-size: 14px; color: #7f8c8d; margin-top: 10px; }
+        .countdown-wrapper { display: flex; gap: 10px; direction: ltr; }
+        .time-box { background: var(--main-brown); color: var(--white); padding: 8px; border-radius: 10px; text-align: center; min-width: 55px; }
+        .time-num { display: block; font-size: 1.3rem; font-weight: 900; line-height: 1; }
+        .time-label { display: block; font-size: 0.65rem; margin-top: 4px; color: #d7ccc8; }
 
-#schedule-section { background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #0f0c29 100%) !important; border: 1px solid #d4af37 !important; border-radius: 25px; padding: 45px 30px; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4) !important; text-align: center; }
-#schedule-section .section-title { color: #d4af37 !important; font-size: 32px !important; font-weight: 800; justify-content: center; text-shadow: 2px 2px 8px rgba(0,0,0,0.6); margin-bottom: 10px; letter-spacing: 1px; }
-#schedule-section .section-title::before { display: none; }
-.motivation-quote { color: #f1c40f; font-style: italic; font-size: 16px; margin-bottom: 30px; opacity: 0.9; display: block; }
-#schedule-section .file-item { background: rgba(255, 255, 255, 0.05) !important; backdrop-filter: blur(10px); border: 1px solid rgba(212, 175, 55, 0.15); border-right: 6px solid #d4af37 !important; color: #ffffff !important; font-size: 22px; font-weight: 700; padding: 20px; margin-bottom: 18px !important; border-radius: 15px; justify-content: center; transition: all 0.4s ease; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); }
-#schedule-section .file-item:hover { transform: translateY(-8px) scale(1.02); background: rgba(255, 255, 255, 0.1) !important; border-right-color: #9b59b6 !important; box-shadow: 0 15px 30px rgba(212, 175, 55, 0.25); letter-spacing: 0.5px; }
-#schedule-section .back-btn { background: linear-gradient(135deg, #d4af37, #b5952f) !important; color: #121212 !important; font-weight: 800; font-size: 18px; padding: 12px 45px; margin-top: 35px; border-radius: 30px; transition: all 0.3s ease; border: none; box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4); }
-#schedule-section .back-btn:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6); color: #000 !important; }
-.whatsapp-btn { display: inline-block; background: linear-gradient(135deg, #25D366, #128C7E); color: white; padding: 12px 25px; border-radius: 30px; font-size: 16px; font-weight: bold; text-decoration: none; box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4); transition: 0.3s; }
-.whatsapp-btn:hover { transform: scale(1.07); }
-</style>
+        .homework-link-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            background: linear-gradient(135deg, var(--main-brown), var(--soft-brown));
+            color: var(--white);
+            padding: 14px 24px;
+            border-radius: 15px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .back-container { text-align: center; margin-top: 40px; }
+        .btn-return {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 30px;
+            background-color: var(--main-brown);
+            color: var(--white);
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        /* تنسيق قسم التواصل */
+        .contact-card {
+            background: #e8f5e9;
+            border-right: 5px solid #2e7d32;
+        }
+        .whatsapp-btn {
+            background: #25d366;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+        .whatsapp-btn:hover { background: #128c7e; transform: scale(1.05); }
+
+        @media (max-width: 768px) {
+            .card-item { flex-direction: column; gap: 15px; text-align: center; }
+            .countdown-wrapper { justify-content: center; }
+        }
+      .prof-logo {
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            width: 140px;
+            height: auto;
+            z-index: 10;
+            background-color: var(--main-brown); /* اللون البني المطلوب */
+            padding: 12px; /* مسافة لظهور اللون من خلف أطراف الصورة */
+            border-radius: 20px; /* حواف دائرية لتناسب تصميم الموقع */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15); /* ظل خفيف لإبراز الصورة */
+        }
+
+        @media (max-width: 768px) {
+            .prof-logo {
+                width: 85px;
+                top: 55px;
+                right: 10px;
+                padding: 7px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<div id="splash"><div id="counter">0%</div></div>
-
-<div id="main-content">
-<header>
-    <button class="theme-toggle" onclick="toggleDarkMode()" id="themeBtn">🌙 الوضع الليلي</button>
-    <img src="https://i.ibb.co/fVs6fZZs/gemini-3-1-flash-image-preview-nano-banana-2-a-removebg-preview.png" id="main-logo">
-    <h1>الأستاذ أسامة فودة</h1>
-    <div class="news-bar">
-    <span id="news-text">تم تاجيل الامتحان الى الاسبوع القادم</span>
-    </div>
-</header>
-
-<div class="container">
-    <div class="grid">
-        <div class="box" style="background: linear-gradient(135deg, #FF512F 0%, #DD2476 100%);" onclick="showSection('wa7eb-section')"><i>📌</i> الواجبات</div>
-        <div class="box" style="background: linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%);" onclick="showSection('exam-page-section')"><i>💻</i> الامتحانات الإلكترونية</div>
-        <div class="box" style="background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);" onclick="showSection('exams-new-section')"><i>📄</i> امتحانات</div>
-        <div class="box" style="background: linear-gradient(135deg, #1D976C 0%, #93F9B9 100%);" onclick="showSection('files-section')"><i>📁</i> الملفات</div>
-        <div class="box" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);" onclick="showSection('dosyat-section')"><i>📚</i> الدوسيات</div>
-        <div class="box" style="background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);" onclick="showSection('schedule-section')"><i>⏰</i> المواعيد</div>
-        <div class="box" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);" onclick="showSection('contact-section')"><i>📞</i> تواصل معنا</div>
+    <div class="news-header">
+        <div class="ticker-text">📢 تنبيه: تم تأجيل الامتحان القادم.. يرجى متابعة جدول المواعيد المحدث 📢</div>
     </div>
 
-    <div id="files-section" class="card" style="display:none;">
-        <h2 class="section-title">📘 شروحات القواعد</h2>
-        <div class="file-grid">
-            <a href="https://drive.google.com/file/d/1AfqTkCSagsVdgWf_t1lMZxko4wLOzSvq/view?usp=drive_link" target="_blank" class="file-item"><div class="file-info"><div class="file-icon">📖</div><div class="file-name">قاعدة الانعكاس والشرطين</div></div><div class="btn-view">عرض</div></a>
-            <a href="https://drive.google.com/file/d/138TN7CzG1qmztmRYhzD2aqfRfwPdV93f/view?usp=drive_link" target="_blank" class="file-item"><div class="file-info"><div class="file-icon">📖</div><div class="file-name">قاعدة الاشتقاق | Derivation</div></div><div class="btn-view">عرض</div></a>
-            <a href="https://drive.google.com/file/d/17E8r4Swma-3RM0v_EbTZoktn0La-sUfH/view?usp=drive_link" target="_blank" class="file-item"><div class="file-info"><div class="file-icon">📖</div><div class="file-name">أنواع الجمل الشرطية</div></div><div class="btn-view">عرض</div></a>
-            <a href="https://drive.google.com/file/d/1FAtt272AGIMnOKn_jfmuLzOidMS4Kt-b/view?usp=drive_link" target="_blank" class="file-item"><div class="file-info"><div class="file-icon">📖</div><div class="file-name">تلخيص قاعدة أداة التعريف</div></div><div class="btn-view">عرض</div></a>
-            <a href="https://drive.google.com/file/d/1K7fp-bQ5whZ_R8SqOtLbxGOocJac5D1n/view?usp=drive_link" target="_blank" class="file-item"><div class="file-info"><div class="file-icon">📖</div><div class="file-name">تلخيص الأساليب الشعرية</div></div><div class="btn-view">عرض</div></a>
-        </div>
-        <h2 class="section-title">🖼️ غلافات الوحدات</h2>
-        <div class="file-grid">
-            <a href="https://drive.google.com/file/d/1vKLIqG_Y5MZuS5lQjWQKWMjlnk0vfSS8/view?usp=drive_link" target="_blank" class="file-item" style="border-right-color: #2ecc71;"><div class="file-info"><div class="file-icon">🖼️</div><div class="file-name">غلاف الوحدة السادسة</div></div><div class="btn-view" style="background:#2ecc71">عرض</div></a>
-            <a href="https://drive.google.com/file/d/1Kg2Zm4G6OdjXDQq0oh0WUsRMmXm-1Mh5/view?usp=drive_link" target="_blank" class="file-item" style="border-right-color: #2ecc71;"><div class="file-info"><div class="file-icon">🖼️</div><div class="file-name">غلاف الوحدة السابعة</div></div><div class="btn-view" style="background:#2ecc71">عرض</div></a>
-            <a href="https://drive.google.com/file/d/1aBDfwaaC35eF8cACEDbh5N9dwcsRuCRu/view?usp=drive_link" target="_blank" class="file-item" style="border-right-color: #2ecc71;"><div class="file-info"><div class="file-icon">🖼️</div><div class="file-name">غلاف الوحدات 8 و 9 و 10</div></div><div class="btn-view" style="background:#2ecc71">عرض</div></a>
-        </div>
-        <h2 class="section-title">💡 بنك الأسئلة والحفظيات</h2>
-        <div class="file-grid">
-            <a href="https://drive.google.com/file/d/12z-5H4u2ldUi1qA2JZiKNJDK5YhEJKLu/view?usp=drive_link" target="_blank" class="file-item" style="border-right-color:#f1c40f;"><div class="file-info"><div class="file-icon">❓</div><div class="file-name">بنك أسئلة أداة التعريف</div></div><div class="btn-view" style="background:#f1c40f">تحميل</div></a>
-            <a href="https://drive.google.com/file/d/1RtVU-rBWQ_nnj87g-mLo_0YBFF0gfDMv/view?usp=drive_link" target="_blank" class="file-item" style="border-right-color:#9b59b6;"><div class="file-info"><div class="file-icon">🔤</div><div class="file-name">معاني الوحدة 7 و 8</div></div><div class="btn-view" style="background:#9b59b6">تحميل</div></a>
-        </div>
-        <div class="back-btn" onclick="hideAllSections()">⬅ العودة</div>
-    </div>
+   <header style="position: relative;"> <img src="https://i.ibb.co/Q7F3Wv5d/gemini-3-1-flash-image-preview-nano-banana-2-a-removebg-preview.png" alt="Logo" class="prof-logo">
+        <h1 class="prof-name">الأستاذ أسامة فودة</h1>
+        <div class="divider"></div>
+        <p class="quote">"بالعلمِ نَرتقي، وبالإصرارِ نُحققُ المستحيل"</p>
+    </header>
 
-    <div id="dosyat-section" class="card" style="display:none;">
-        <h2 class="section-title">📘 دوسيات الفصل الأول</h2>
-        <div class="file-grid">
-            <a href="https://drive.google.com/file/d/1o2K4sB7XwtsK9EwzePn0uIlZVNh5phBD/view?usp=drive_link" target="_blank" class="file-item"><div class="file-info"><div class="file-icon">📚</div><div class="file-name">دوسية الوحدة الأولى</div></div><div class="btn-view">تحميل</div></a>
-            <a href="https://drive.google.com/file/d/1lBZXahOkYeZtlsWVJjB2U4YiqQN9nxBD/view?usp=drive_link" target="_blank" class="file-item"><div class="file-info"><div class="file-icon">📚</div><div class="file-name">دوسية الوحدة الثانية</div></div><div class="btn-view">تحميل</div></a>
-            <a href="https://drive.google.com/file/d/1VmSzc4DvbsrTRvU6qpCZnMA9kd2f26pm/view?usp=drive_link" target="_blank" class="file-item"><div class="file-info"><div class="file-icon">📚</div><div class="file-name">دوسية الوحدة الثالثة</div></div><div class="btn-view">تحميل</div></a>
-            <a href="https://drive.google.com/file/d/1aoAArsQp_VCW0TwGQS71BqS4CCx1IG2F/view?usp=drive_link" target="_blank" class="file-item"><div class="file-info"><div class="file-icon">📚</div><div class="file-name">دوسية الوحدة الرابعة</div></div><div class="btn-view">تحميل</div></a>
-            <a href="https://drive.google.com/file/d/1Lt6QcmXWlVALRJnFfYFilFNZHBopn-OA/view?usp=drive_link" target="_blank" class="file-item"><div class="file-info"><div class="file-icon">📚</div><div class="file-name">دوسية الوحدة الخامسة</div></div><div class="btn-view">تحميل</div></a>
+    <main class="grid-container" id="main-menu">
+        <div class="premium-btn" onclick="showSection('homework-section')">
+            <i class="fas fa-pencil-alt"></i>
+            <span>الواجبات اليومية</span>
         </div>
-        <h2 class="section-title">📙 دوسيات الفصل الثاني</h2>
-        <div class="file-grid">
-            <a href="https://drive.google.com/file/d/1_m_Fb6H0smm-gSFnybza2UJynDqRpGlb/view?usp=drive_link" target="_blank" class="file-item" style="border-right-color:#e67e22;"><div class="file-info"><div class="file-icon">📚</div><div class="file-name">دوسية الوحدة السادسة</div></div><div class="btn-view" style="background:#e67e22">تحميل</div></a>
-            <a href="https://drive.google.com/file/d/1GjFpCDADt3Y4zyO_EWWF6BUxs-TGK108/view?usp=drive_link" target="_blank" class="file-item" style="border-right-color:#e67e22;"><div class="file-info"><div class="file-icon">📚</div><div class="file-name">دوسية الوحدة السابعة</div></div><div class="btn-view" style="background:#e67e22">تحميل</div></a>
-            <a href="https://drive.google.com/file/d/1U-b6mcmNZQbbJNPihzfxKaMZh3LB7jHK/view?usp=drive_link" target="_blank" class="file-item" style="border-right-color:#e67e22;"><div class="file-info"><div class="file-icon">📚</div><div class="file-name">دوسية الوحدة الثامنة</div></div><div class="btn-view" style="background:#e67e22">تحميل</div></a>
-            <a href="https://drive.google.com/file/d/1n6uyn2VIhejDBU8sdCWa6AdIoTHuMSMP/view?usp=drive_link" target="_blank" class="file-item" style="border-right-color:#e67e22;"><div class="file-info"><div class="file-icon">📚</div><div class="file-name">دوسية الوحدة التاسعة</div></div><div class="btn-view" style="background:#e67e22">تحميل</div></a>
-            <a href="https://drive.google.com/file/d/1LIdIgxGsJRFN6qEXM2fo05stfSKYLPZh/view?usp=drive_link" target="_blank" class="file-item" style="border-right-color:#e67e22;"><div class="file-info"><div class="file-icon">📚</div><div class="file-name">دوسية الوحدة العاشرة</div></div><div class="btn-view" style="background:#e67e22">تحميل</div></a>
+        <div class="premium-btn" onclick="showSection('exam-section')">
+            <i class="fas fa-laptop"></i>
+            <span>الاختبارات الذكية</span>
         </div>
-        <div class="back-btn" onclick="hideAllSections()">⬅ العودة</div>
-    </div>
+        <div class="premium-btn" onclick="showSection('pdf-exams-section')">
+            <i class="fas fa-file-invoice"></i>
+            <span>نماذج الامتحانات</span>
+        </div>
+        <div class="premium-btn" onclick="showSection('files-bank-section')">
+            <i class="fas fa-archive"></i>
+            <span>بنك الملفات</span>
+        </div>
+        <div class="premium-btn" onclick="showSection('booklets-section')">
+            <i class="fas fa-book-reader"></i>
+            <span>الدوسيات التعليمية</span>
+        </div>
+        <div class="premium-btn" onclick="showSection('schedule-section')">
+            <i class="fas fa-clock"></i>
+            <span>جدول المواعيد</span>
+        </div>
+        <div class="premium-btn" onclick="showSection('contact-section')" style="grid-column: 1/-1; max-width: 400px; margin: auto; border: 2px solid var(--main-brown);">
+            <i class="fas fa-paper-plane"></i><span>تواصل معنا</span>
+        </div>
+    </main>
 
-    <div id="exams-new-section" class="card" style="display:none;">
-        <h2 class="section-title">📄 نماذج امتحانات PDF</h2>
-        <div class="file-grid">
-            <a href="https://drive.google.com/file/d/1Qt-8QI-GS39blaJtYTwBe5QDUzYD0l02/view?usp=drive_link" target="_blank" class="file-item" style="border-right-color:#4b6cb7;"><div class="file-info"><div class="file-icon">📄</div><div class="file-name">امتحان الفصل الأول كامل</div></div><div class="btn-view" style="background:#4b6cb7">تحميل</div></a>
-            <a href="https://drive.google.com/file/d/10-KxELU3fSJJjRMBCSJIXr3GJA_cLEOO/view?usp=drive_link" target="_blank" class="file-item" style="border-right-color:#4b6cb7;"><div class="file-info"><div class="file-icon">📄</div><div class="file-name">امتحان على the passive</div></div><div class="btn-view" style="background:#4b6cb7">تحميل</div></a>
+    <section id="homework-section" class="content-section">
+        <div class="card-item">
+            <div>
+                <h3 style="margin:0; color:var(--main-brown);">موعد نزول الواجب القادم</h3>
+                <small style="color:#bcaaa4">Next Assignment Date</small>
+            </div>
+            <div class="countdown-wrapper">
+                <div class="time-box"><span class="time-num" id="hw-sec">00</span><span class="time-label">ث</span></div>
+                <div class="time-box"><span class="time-num" id="hw-min">00</span><span class="time-label">د</span></div>
+                <div class="time-box"><span class="time-num" id="hw-hour">00</span><span class="time-label">س</span></div>
+                <div class="time-box"><span class="time-num" id="hw-day">00</span><span class="time-label">ي</span></div>
+            </div>
         </div>
-        <div class="back-btn" onclick="hideAllSections()">⬅ العودة</div>
-    </div>
+        <div class="card-item"><h3>الواجب التفاعلي</h3><span style="color:#bcaaa4">Interactive Homework</span></div>
+        <div class="card-item">
+            <div><h3>الواجبات المتاحة</h3><small style="color:#bcaaa4">Available Homeworks</small></div>
+            <a href="https://drive.google.com/file/d/11S9JevbFG3qx_a_KGnWeBaxQsNJ4OurW/view" target="_blank" class="homework-link-btn">
+                <i class="fas fa-file-pdf"></i>
+                <div style="display:flex; flex-direction:column; line-height:1.2;">
+                    <span>الواجب الأول - الوحدة الأولى</span>
+                    <span style="font-size:0.75rem; font-weight:400; opacity:0.8;">Assignment 1 - Unit 1</span>
+                </div>
+            </a>
+          <a href="https://drive.google.com/file/d/1-e8zmwoGo-wh2ljDkY-k2RHkUohpYwQz/view" target="_blank" class="homework-link-btn" style="margin-top: 10px;">
+                <i class="fas fa-file-pdf"></i>
+                <div style="display:flex; flex-direction:column; line-height:1.2;">
+                    <span>الواجب الثاني - الوحدة الأولى</span>
+                    <span style="font-size:0.75rem; font-weight:400; opacity:0.8;">Assignment 2 - Unit 1</span>
+                </div>
+            </a>
+        </div>
+        <div class="back-container"><div class="btn-return" onclick="showMenu()"><i class="fas fa-chevron-right"></i><span>العودة للقائمة الرئيسية</span></div></div>
+    </section>
 
-    <div id="exam-page-section" class="card" style="display:none;">
-        <h2 class="section-title">💻 الامتحانات الإلكترونية</h2>
-        
-        <div class="exam-instructions">
-            <h4>⚠️ تعليمات هامة:</h4>
+    <section id="exam-section" class="content-section">
+        <div class="instruction-card">
+            <h4><i class="fas fa-info-circle"></i> تعليمات الامتحان الإلكتروني:</h4>
             <ul>
-                <li>تأكد من استقرار شبكة الإنترنت قبل البدء.</li>
-                <li>يُسمح بتقديم الامتحان مرة واحدة فقط لكل طالب.</li>
-                <li>يرجى كتابة الاسم الرباعي بشكل صحيح.</li>
+                <li>يرجى التأكد من استقرار شبكة الإنترنت قبل البدء.</li>
+                <li>كل امتحان متاح لمحاولة واحدة فقط.</li>
+                <li>تظهر النتيجة فور الانتهاء من الإجابة.</li>
             </ul>
         </div>
-
-        <div id="exam-timer-area" style="text-align: center; background: #f8f9fa; padding: 15px; border-radius: 15px; border: 2px dashed #8E2DE2; margin-bottom: 20px;">
-            <p style="font-weight: bold; color: #2c3e50; margin-bottom: 10px;">📅 موعد نزول الامتحان القادم:</p>
-            <div id="exam-countdown" class="timer-wrapper"></div>
-        </div>
-
-        <div id="exam-released-btn" style="display:none; text-align:center; margin-bottom: 20px;">
-            <div style="background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; padding: 15px 30px; border-radius: 15px; font-size: 18px; font-weight: bold; display: inline-block; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
-                تم تاجيل الامتحان
+        <div class="card-item">
+            <div><h3>موعد نزول الامتحان القادم</h3><small style="color:#bcaaa4">Next Exam Date</small></div>
+            <div class="countdown-wrapper">
+                <div class="time-box"><span class="time-num" id="ex-sec">00</span><span class="time-label">ث</span></div>
+                <div class="time-box"><span class="time-num" id="ex-min">00</span><span class="time-label">د</span></div>
+                <div class="time-box"><span class="time-num" id="ex-hour">00</span><span class="time-label">س</span></div>
+                <div class="time-box"><span class="time-num" id="ex-day">00</span><span class="time-label">ي</span></div>
             </div>
         </div>
-
-        <div id="active-exam-container" style="display:block;">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfaIxV6o-ONM8A_B-0o6koU9z_eipZB0_TKl_5Q4WSqC0qpAw/viewform" target="_blank" class="exam-card">
-                <div class="exam-text"><h3>the passive</h3><p>امتحان إلكتروني شامل على قاعدة المبني للمجهول</p></div>
-                <div class="exam-badge">دخول الآن</div>
-            </a>
-        </div>
-
-        <div class="back-btn" onclick="hideAllSections()">⬅ العودة</div>
+        <div class="card-item"><div><h3>الامتحان الإلكتروني</h3><small style="color:#bcaaa4">Online Electronic Exam</small></div><a href="https://docs.google.com/forms/d/e/1FAIpQLSfaIxV6o-ONM8A_B-0o6koU9z_eipZB0_TKl_5Q4WSqC0qpAw/viewform" target="_blank" class="homework-link-btn">
+    <i class="fas fa-edit"></i>
+    <div style="display:flex; flex-direction:column; line-height:1.2;">
+        <span>the passive</span>
+        <span style="font-size:0.75rem; font-weight:400; opacity:0.8;">المبني للمجهول</span>
     </div>
+</a></div>
+        <div class="back-container"><div class="btn-return" onclick="showMenu()"><i class="fas fa-chevron-right"></i><span>العودة للقائمة الرئيسية</span></div></div>
+    </section>
 
-    <div id="wa7eb-section" class="card" style="display:none;">
-        <div id="hw-timer-area">
-            <h2 class="section-title">نشر الواجب القادم خلال:</h2>
-            <div id="hw-countdown" class="timer-wrapper"></div>
+    <section id="pdf-exams-section" class="content-section">
+        <div class="card-item">
+            <div><h3>نماذج الامتحانات PDF</h3><small style="color:#bcaaa4">Exam Templates PDF</small></div>
+            <i class="fas fa-file-pdf" style="font-size: 2rem; color: var(--soft-brown);"></i>
         </div>
-        
-        <div id="hw-open-btn" style="display:none; text-align:center; margin-bottom:20px;">
-            <div style="background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; padding: 15px 30px; border-radius: 15px; font-size: 18px; font-weight: bold; display: inline-block; box-shadow: 0 10px 20px rgba(0,0,0,0.2);">
-                📢 تم نشر الواجب
-            </div>
+       <div class="card-item" style="flex-direction: column; align-items: stretch; gap: 10px;">
+    <a href="https://drive.google.com/file/d/1Qt-8QI-GS39blaJtYTwBe5QDUzYD0l02/view" target="_blank" class="homework-link-btn">
+        <i class="fas fa-file-pdf"></i>
+        <div style="display:flex; flex-direction:column; line-height:1.2;">
+            <span>امتحان الفصل الأول كامل</span>
+            <span style="font-size:0.75rem; font-weight:400; opacity:0.8;">Full First Semester Exam</span>
         </div>
+    </a>
 
-        <h2 class="section-title">📝 الواجب التفاعلي</h2>
-      
-
-
-        <h2 class="section-title">📌 الواجبات المتاحة</h2>
-        <div class="file-grid" id="hw-list">
-            <a href="https://drive.google.com/file/d/11S9JevbFG3qx_a_KGnWeBaxQsNJ4OurW/view?usp=drive_link" target="_blank" class="file-item"><div class="file-info"><div class="file-icon">📝</div><div class="file-name">الواجب الأول - الوحدة الأولى</div></div><div class="btn-view">تحميل</div></a>
-          <a href="https://drive.google.com/file/d/1-e8zmwoGo-wh2ljDkY-k2RHkUohpYwQz/view?usp=drive_link" target="_blank" class="file-item"><div class="file-info"><div class="file-icon">📝</div><div class="file-name">الواجب الثاني - الوحدة الأولى</div></div><div class="btn-view">تحميل</div></a>
+    <a href="https://drive.google.com/file/d/10-KxELU3fSJJjRMBCSJIXr3GJA_cLEOO/view" target="_blank" class="homework-link-btn">
+        <i class="fas fa-file-pdf"></i>
+        <div style="display:flex; flex-direction:column; line-height:1.2;">
+            <span>امتحان على the passive</span>
+            <span style="font-size:0.75rem; font-weight:400; opacity:0.8;">Passive Voice Exam</span>
         </div>
-
-        <div class="back-btn" onclick="hideAllSections()">⬅ العودة</div>
-    </div>
-
-    <div id="schedule-section" class="card" style="display:none;">
-        <h2 class="section-title">⏰ المواعيد الأسبوعية</h2>
-        <span class="motivation-quote">"تنظيم الوقت هو نصف النجاح، استعدوا جيداً للأسبوع القادم! ✨"</span>
-        
-        <div class="file-item" style="border-right-color:#e74c3c; margin-bottom:10px;">الاثنين: نشر الواجبات الأسبوعية</div>
-        <div class="file-item" style="border-right-color:#8E2DE2;">الثلاثاء: الامتحان الإلكتروني (5:00 مساءً)</div>
-        
-        <p style="color: #fff; opacity: 0.8; margin-top: 30px; font-size: 14px;">« النجاح ليس مصادفة، بل هو عمل جاد واستمرار »</p>
-        
-        <div class="back-btn" onclick="hideAllSections()">⬅ العودة</div>
-    </div>
-
-    <div id="contact-section" class="card" style="display:none;">
-        <h2 class="section-title">تواصل معنا</h2>
-        <div class="contact-wrapper">
-            <a href="https://wa.me/962786480572" target="_blank" class="contact-card-main">
-                <div class="contact-icon-circle">💬</div>
-                <h3 class="contact-text-h3">رابط الواتساب المباشر</h3>
-                <p class="contact-text-p">للاستفسارات والأسئلة المتعلقة بالمادة</p>
-                <span class="contact-button-action">ابدأ المحادثة الآن</span>
-                <span class="contact-support-text">رقم الهاتف: 0786480572</span>
-            </a>
-            
-            <p style="text-align: center; color: #7f8c8d; font-size: 14px; padding: 10px;">
-                ملاحظة: سيتم الرد على جميع الاستفسارات خلال أسرع وقت ممكن.
-            </p>
-        </div>
-        <div class="back-btn" onclick="hideAllSections()">⬅ العودة</div>
-    </div>
+    </a>
 </div>
+        <div class="back-container"><div class="btn-return" onclick="showMenu()"><i class="fas fa-chevron-right"></i><span>العودة للقائمة الرئيسية</span></div></div>
+    </section>
 
-<footer>© 2026 الأستاذ أسامة فودة</footer>
+    <section id="files-bank-section" class="content-section">
+       <div class="card-item" style="flex-direction: column; align-items: stretch; gap: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 10px;">
+        <div><h3>ملخصات القواعد</h3><small style="color:#bcaaa4">Grammar Summaries</small></div>
+        <i class="fas fa-book" style="font-size: 1.5rem; color: var(--main-brown);"></i>
+    </div>
 
-<script>
-// الوضع الليلي والشاشة الافتتاحية
-function toggleDarkMode() {
-    const body = document.body;
-    const btn = document.getElementById('themeBtn');
-    body.classList.toggle('dark-mode');
-    if(body.classList.contains('dark-mode')) {
-        btn.innerHTML = "☀️ الوضع الفاتح";
-        localStorage.setItem('theme', 'dark');
-    } else {
-        btn.innerHTML = "🌙 الوضع الليلي";
-        localStorage.setItem('theme', 'light');
-    }
-}
+    <a href="https://drive.google.com/file/d/1AfqTkCSagsVdgWf_t1lMZxko4wLOzSvq/view" target="_blank" class="homework-link-btn">
+        <i class="fas fa-file-pdf"></i>
+        <div style="display:flex; flex-direction:column; line-height:1.2;">
+            <span>قاعدة الانعكاس والشرطين</span>
+            <span style="font-size:0.75rem; font-weight:400; opacity:0.8;">Cleft Sentences & Conditionals</span>
+        </div>
+    </a>
 
-let splashCount = 0;
-const splashInterval = setInterval(() => {
-    splashCount += 2;
-    document.getElementById('counter').innerText = splashCount + "%";
-    if(splashCount >= 100) {
-        clearInterval(splashInterval);
-        document.getElementById('splash').style.display = 'none';
-        document.getElementById('main-content').style.display = 'block';
-    }
-}, 30);
+    <a href="https://drive.google.com/file/d/138TN7CzG1qmztmRYhzD2aqfRfwPdV93f/view" target="_blank" class="homework-link-btn">
+        <i class="fas fa-file-pdf"></i>
+        <div style="display:flex; flex-direction:column; line-height:1.2;">
+            <span>قاعدة الاشتقاق</span>
+            <span style="font-size:0.75rem; font-weight:400; opacity:0.8;">Derivation Rule</span>
+        </div>
+    </a>
 
-window.onload = function() {
-    if(localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add('dark-mode');
-        document.getElementById('themeBtn').innerHTML = "☀️ الوضع الفاتح";
-    }
-}
+    <a href="https://drive.google.com/file/d/17E8r4Swma-3RM0v_EbTZoktn0La-sUfH/view" target="_blank" class="homework-link-btn">
+        <i class="fas fa-file-pdf"></i>
+        <div style="display:flex; flex-direction:column; line-height:1.2;">
+            <span>أنواع الجمل الشرطية</span>
+            <span style="font-size:0.75rem; font-weight:400; opacity:0.8;">Types of Conditional Sentences</span>
+        </div>
+    </a>
 
-function showSection(id) {
-    document.querySelector('.grid').style.display = 'none';
-    const sections = ['wa7eb-section', 'exam-page-section', 'exams-new-section', 'files-section', 'dosyat-section', 'schedule-section', 'contact-section'];
-    sections.forEach(sec => document.getElementById(sec).style.display = 'none');
-    document.getElementById(id).style.display = 'block';
-}
+    <a href="https://drive.google.com/file/d/1FAtt272AGIMnOKn_jfmuLzOidMS4Kt-b/view" target="_blank" class="homework-link-btn">
+        <i class="fas fa-file-pdf"></i>
+        <div style="display:flex; flex-direction:column; line-height:1.2;">
+            <span>تلخيص قاعدة أداة التعريف</span>
+            <span style="font-size:0.75rem; font-weight:400; opacity:0.8;">Articles Rule Summary</span>
+        </div>
+    </a>
 
-function hideAllSections() {
-    const sections = ['wa7eb-section', 'exam-page-section', 'exams-new-section', 'files-section', 'dosyat-section', 'schedule-section', 'contact-section'];
-    sections.forEach(sec => document.getElementById(sec).style.display = 'none');
-    document.querySelector('.grid').style.display = 'grid';
-}
+    <a href="https://drive.google.com/file/d/1K7fp-bQ5whZ_R8SqOtLbxGOocJac5D1n/view" target="_blank" class="homework-link-btn">
+        <i class="fas fa-file-pdf"></i>
+        <div style="display:flex; flex-direction:column; line-height:1.2;">
+            <span>تلخيص الأساليب الشعرية</span>
+            <span style="font-size:0.75rem; font-weight:400; opacity:0.8;">Poetic Devices Summary</span>
+        </div>
+    </a>
+</div>
+       <div class="card-item" style="flex-direction: column; align-items: stretch; gap: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 10px;">
+        <div><h3>غلافات الدوسيات</h3><small style="color:#bcaaa4">Booklet Covers</small></div>
+        <i class="fas fa-image" style="font-size: 1.5rem; color: var(--main-brown);"></i>
+    </div>
 
-// --- نظام العدادات (للامتحان وللواجبات) ---
-const EXAM_TARGET_DATE = new Date("April 7, 2026 17:00:00").getTime();
-const HW_TARGET_DATE = new Date("April 13, 2026 17:00:00").getTime(); 
+    <a href="https://drive.google.com/file/d/1vKLIqG_Y5MZuS5lQjWQKWMjlnk0vfSS8/view" target="_blank" class="homework-link-btn">
+        <i class="fas fa-file-image"></i>
+        <div style="display:flex; flex-direction:column; line-height:1.2;">
+            <span>غلاف الوحدة السادسة</span>
+            <span style="font-size:0.75rem; font-weight:400; opacity:0.8;">Unit Six Cover</span>
+        </div>
+    </a>
 
-function updateTimers() {
-    const now = new Date().getTime();
-    
-    // عداد الامتحان
-    const distExam = EXAM_TARGET_DATE - now;
-    if (distExam > 0) {
-        renderTimer("exam-countdown", distExam);
-    } else {
-        document.getElementById("exam-timer-area").style.display = "none";
-        document.getElementById("exam-released-btn").style.display = "block";
-    }
+    <a href="https://drive.google.com/file/d/1Kg2Zm4G6OdjXDQq0oh0WUsRMmXm-1Mh5/view?usp=drive_link" target="_blank" class="homework-link-btn">
+        <i class="fas fa-file-image"></i>
+        <div style="display:flex; flex-direction:column; line-height:1.2;">
+            <span>غلاف الوحدة السابعة</span>
+            <span style="font-size:0.75rem; font-weight:400; opacity:0.8;">Unit Seven Cover</span>
+        </div>
+    </a>
 
-    // عداد الواجب
-    const distHW = HW_TARGET_DATE - now;
-    if (distHW > 0) {
-        renderTimer("hw-countdown", distHW);
-    } else {
-        document.getElementById("hw-timer-area").style.display = "none";
-        document.getElementById("hw-open-btn").style.display = "block";
-    }
-}
+    <a href="https://drive.google.com/file/d/1aBDfwaaC35eF8cACEDbh5N9dwcsRuCRu/view" target="_blank" class="homework-link-btn">
+        <i class="fas fa-file-image"></i>
+        <div style="display:flex; flex-direction:column; line-height:1.2;">
+            <span>غلاف الوحدة الثامنة والتاسعة والعاشرة</span>
+            <span style="font-size:0.75rem; font-weight:400; opacity:0.8;">Units 8, 9 & 10 Covers</span>
+        </div>
+    </a>
+</div>
+        <div class="card-item" style="flex-direction: column; align-items: stretch; gap: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 10px;">
+        <div><h3>بنك الأسئلة</h3><small style="color:#bcaaa4">Question Bank</small></div>
+        <i class="fas fa-database" style="font-size: 1.5rem; color: var(--main-brown);"></i>
+    </div>
 
-function renderTimer(elementId, distance) {
-    const el = document.getElementById(elementId);
-    if(!el) return;
-    
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    <a href="https://drive.google.com/file/d/12z-5H4u2ldUi1qA2JZiKNJDK5YhEJKLu/view" target="_blank" class="homework-link-btn">
+        <i class="fas fa-question-circle"></i>
+        <div style="display:flex; flex-direction:column; line-height:1.2;">
+            <span>بنك أسئلة أداة التعريف</span>
+            <span style="font-size:0.75rem; font-weight:400; opacity:0.8;">Articles Question Bank</span>
+        </div>
+    </a>
+</div>
+       <div class="card-item" style="flex-direction: column; align-items: stretch; gap: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 10px;">
+        <div><h3>الحفظيات</h3><small style="color:#bcaaa4">Memory Material</small></div>
+        <i class="fas fa-brain" style="font-size: 1.5rem; color: var(--main-brown);"></i>
+    </div>
 
-    el.innerHTML = `
-        <div class="timer-group"><div class="flip-card"><div class="flip-val">${days}</div></div><div class="label">أيام</div></div>
-        <div class="timer-group"><div class="flip-card"><div class="flip-val">${hours}</div></div><div class="label">ساعة</div></div>
-        <div class="timer-group"><div class="flip-card"><div class="flip-val">${minutes}</div></div><div class="label">دقيقة</div></div>
-        <div class="timer-group"><div class="flip-card"><div class="flip-val">${seconds}</div></div><div class="label">ثانية</div></div>
-    `;
-}
+    <a href="https://drive.google.com/file/d/1RtVU-rBWQ_nnj87g-mLo_0YBFF0gfDMv/view" target="_blank" class="homework-link-btn">
+        <i class="fas fa-language"></i>
+        <div style="display:flex; flex-direction:column; line-height:1.2;">
+            <span>معاني الوحدة السابعة والثامنة</span>
+            <span style="font-size:0.75rem; font-weight:400; opacity:0.8;">Units 7 & 8 Vocabulary</span>
+        </div>
+    </a>
+</div>
+        <div class="back-container"><div class="btn-return" onclick="showMenu()"><i class="fas fa-chevron-right"></i><span>العودة للقائمة الرئيسية</span></div></div>
+    </section>
 
-setInterval(updateTimers, 1000);
+    <section id="booklets-section" class="content-section">
+       <div class="card-item" style="flex-direction: column; align-items: stretch; gap: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 10px;">
+        <div><h3>دوسيات الفصل الأول</h3><small style="color:#bcaaa4">First Semester Booklets</small></div>
+        <i class="fas fa-book-open" style="font-size: 1.5rem; color: var(--main-brown);"></i>
+    </div>
 
+    <a href="https://drive.google.com/file/d/1o2K4sB7XwtsK9EwzePn0uIlZVNh5phBD/view" target="_blank" class="homework-link-btn">
+        <i class="fas fa-file-pdf"></i>
+        <div style="display:flex; flex-direction:column; line-height:1.2;">
+            <span>دوسية الوحدة الأولى</span>
+            <span style="font-size:0.75rem; font-weight:400; opacity:0.8;">Unit One Booklet</span>
+        </div>
+    </a>
 
-</script>
+    <a href="https://drive.google.com/file/d/1lBZXahOkYeZtlsWVJjB2U4YiqQN9nxBD/view" target="_blank" class="homework-link-btn">
+        <i class="fas fa-file-pdf"></i>
+        <div style="display:flex; flex-direction:column; line-height:1.2;">
+            <span>دوسية الوحدة الثانية</span>
+            <span style="font-size:0.75rem; font-weight:400; opacity:0.8;">Unit Two Booklet</span>
+        </div>
+    </a>
+
+    <a href="https://drive.google.com/file/d/1VmSzc4DvbsrTRvU6qpCZnMA9kd2f26pm/view" target="_blank" class="homework-link-btn">
+        <i class="fas fa-file-pdf"></i>
+        <div style="display:flex; flex-direction:column; line-height:1.2;">
+            <span>دوسية الوحدة الثالثة</span>
+            <span style="font-size:0.75rem; font-weight:400; opacity:0.8;">Unit Three Booklet</span>
+        </div>
+    </a>
+
+    <a href="https://drive.google.com/file/d/1aoAArsQp_VCW0TwGQS71BqS4CCx1IG2F/view" target="_blank" class="homework-link-btn">
+        <i class="fas fa-file-pdf"></i>
+        <div style="display:flex; flex-direction:column; line-height:1.2;">
+            <span>دوسية الوحدة الرابعة</span>
+            <span style="font-size:0.75rem; font-weight:400; opacity:0.8;">Unit Four Booklet</span>
+        </div>
+    </a>
+
+    <a href="https://drive.google.com/file/d/1Lt6QcmXWlVALRJnFfYFilFNZHBopn-OA/view" target="_blank" class="homework-link-btn">
+        <i class="fas fa-file-pdf"></i>
+        <div style="display:flex; flex-direction:column; line-height:1.2;">
+            <span>دوسية الوحدة الخامسة</span>
+            <span style="font-size:0.75rem; font-weight:400; opacity:0.8;">Unit Five Booklet</span>
+        </div>
+    </a>
+</div>
+        <div class="card-item" style="flex-direction: column; align-items: stretch; gap: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 10px;">
+        <div><h3>دوسيات الفصل الثاني</h3><small style="color:#bcaaa4">Second Semester Booklets</small></div>
+        <i class="fas fa-book-open" style="font-size: 1.5rem; color: var(--main-brown);"></i>
+    </div>
+
+    <a href="https://drive.google.com/file/d/1_m_Fb6H0smm-gSFnybza2UJynDqRpGlb/view" target="_blank" class="homework-link-btn">
+        <i class="fas fa-file-pdf"></i>
+        <div style="display:flex; flex-direction:column; line-height:1.2;">
+            <span>دوسية الوحدة السادسة</span>
+            <span style="font-size:0.75rem; font-weight:400; opacity:0.8;">Unit Six Booklet</span>
+        </div>
+    </a>
+
+    <a href="https://drive.google.com/file/d/1GjFpCDADt3Y4zyO_EWWF6BUxs-TGK108/view" target="_blank" class="homework-link-btn">
+        <i class="fas fa-file-pdf"></i>
+        <div style="display:flex; flex-direction:column; line-height:1.2;">
+            <span>دوسية الوحدة السابعة</span>
+            <span style="font-size:0.75rem; font-weight:400; opacity:0.8;">Unit Seven Booklet</span>
+        </div>
+    </a>
+
+    <a href="https://drive.google.com/file/d/1U-b6mcmNZQbbJNPihzfxKaMZh3LB7jHK/view" target="_blank" class="homework-link-btn">
+        <i class="fas fa-file-pdf"></i>
+        <div style="display:flex; flex-direction:column; line-height:1.2;">
+            <span>دوسية الوحدة الثامنة</span>
+            <span style="font-size:0.75rem; font-weight:400; opacity:0.8;">Unit Eight Booklet</span>
+        </div>
+    </a>
+
+    <a href="https://drive.google.com/file/d/1n6uyn2VIhejDBU8sdCWa6AdIoTHuMSMP/view" target="_blank" class="homework-link-btn">
+        <i class="fas fa-file-pdf"></i>
+        <div style="display:flex; flex-direction:column; line-height:1.2;">
+            <span>دوسية الوحدة التاسعة</span>
+            <span style="font-size:0.75rem; font-weight:400; opacity:0.8;">Unit Nine Booklet</span>
+        </div>
+    </a>
+
+    <a href="https://drive.google.com/file/d/1LIdIgxGsJRFN6qEXM2fo05stfSKYLPZh/view?usp=drive_link" target="_blank" class="homework-link-btn">
+        <i class="fas fa-file-pdf"></i>
+        <div style="display:flex; flex-direction:column; line-height:1.2;">
+            <span>دوسية الوحدة العاشرة</span>
+            <span style="font-size:0.75rem; font-weight:400; opacity:0.8;">Unit Ten Booklet</span>
+        </div>
+    </a>
+</div>
+        <div class="back-container"><div class="btn-return" onclick="showMenu()"><i class="fas fa-chevron-right"></i><span>العودة للقائمة الرئيسية</span></div></div>
+    </section>
+
+    <section id="schedule-section" class="content-section">
+        <div class="card-item"><div><h3 style="margin:0; color:var(--main-brown);">كل اثنين امتحان تفاعلي</h3><small style="color:#bcaaa4">Every Monday Interactive Exam</small></div></div>
+        <div class="card-item"><div><h3 style="margin:0; color:var(--main-brown);">كل ثلاثاء امتحان إلكتروني</h3><small style="color:#bcaaa4">Every Tuesday Electronic Exam</small></div></div>
+        <div class="back-container"><div class="btn-return" onclick="showMenu()"><i class="fas fa-chevron-right"></i><span>العودة للقائمة الرئيسية</span></div></div>
+    </section>
+
+    <section id="contact-section" class="content-section">
+        <div class="card-item contact-card">
+            <div>
+                <h3 style="margin:0; color:#1b5e20;">تواصل معنا عبر الواتساب</h3>
+                <small style="color:#2e7d32">Contact via WhatsApp</small>
+                <p style="margin: 10px 0 0; font-weight: bold; font-size: 1.2rem;">0786480572</p>
+            </div>
+            <a href="https://wa.me/962786480572" target="_blank" class="whatsapp-btn">
+                <i class="fab fa-whatsapp"></i>
+                <span>مراسلة الآن</span>
+            </a>
+        </div>
+        <div class="back-container"><div class="btn-return" onclick="showMenu()"><i class="fas fa-chevron-right"></i><span>العودة للقائمة الرئيسية</span></div></div>
+    </section>
+
+    <script>
+        function showSection(id) {
+            document.getElementById('main-menu').style.display = 'none';
+            document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showMenu() {
+            document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
+            document.getElementById('main-menu').style.display = 'grid';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function startCountdown(targetDateStr, elementsPrefix) {
+            const targetDate = new Date(targetDateStr).getTime();
+            setInterval(function() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+                if (distance > 0) {
+                    document.getElementById(elementsPrefix + "day").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    document.getElementById(elementsPrefix + "hour").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    document.getElementById(elementsPrefix + "min").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    document.getElementById(elementsPrefix + "sec").innerText = Math.floor((distance % (1000 * 60)) / 1000);
+                }
+            }, 1000);
+        }
+
+        startCountdown("April 13, 2026 17:00:00", "hw-");
+        startCountdown("April 14, 2026 17:00:00", "ex-");
+    </script>
 </body>
 </html>
