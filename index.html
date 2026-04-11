@@ -631,18 +631,29 @@ video {
 </div>
         <div class="back-container"><div class="btn-return" onclick="showMenu()"><i class="fas fa-chevron-right"></i><span>العودة للقائمة الرئيسية</span></div></div>
     </section>
-    <section id="video-section" class="content-section">
-    <div class="video-container">
-        <video id="myVideo">
-            <source src="video.mp4" type="video/mp4">
-        </video>
-
-        <div class="video-overlay">
-            <button class="control-btn" onclick="rewind()"> <i class="fas fa-undo"></i> </button>
-            <button class="control-btn play-main" id="playBtn" onclick="togglePlay()"> <i class="fas fa-play"></i> </button>
-            <button class="control-btn" onclick="forward()"> <i class="fas fa-redo"></i> </button>
-            <button class="control-btn fs-btn" onclick="toggleFullScreen()"> <i class="fas fa-expand"></i> </button>
+   <section id="video-section" class="content-section">
+    <div class="videos-wrapper">
+        
+        <div class="video-container">
+            <video id="myVideo1">
+                <source src="video.mp4" type="video/mp4">
+            </video>
+            <div class="video-overlay">
+                <button class="control-btn play-main" onclick="togglePlay('myVideo1')"> <i class="fas fa-play"></i> </button>
+            </div>
+            <p class="video-title">الدرس الأول 📖</p>
         </div>
+
+        <div class="video-container">
+            <video id="myVideo2">
+                <source src="new_video.mp4" type="video/mp4">
+            </video>
+            <div class="video-overlay">
+                <button class="control-btn play-main" onclick="togglePlay('myVideo2')"> <i class="fas fa-play"></i> </button>
+            </div>
+            <p class="video-title">الدرس الجديد ✨</p>
+        </div>
+
     </div>
     
     <div class="back-container">
