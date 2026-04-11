@@ -7,6 +7,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        .videos-wrapper {
+    display: flex;
+    flex-wrap: wrap; /* لجعل الفيديوهات تنزل تحت بعضها في الشاشات الصغيرة */
+    justify-content: center;
+    gap: 20px; /* مسافة بين الفيديوهين */
+    padding: 20px;
+}
+
+.video-container {
+    width: 45%; /* تصغير الحجم ليأخذ كل فيديو أقل من نصف الشاشة */
+    max-width: 400px; /* تحديد أقصى عرض للمشغل */
+    border-radius: 15px;
+    background: #000;
+    overflow: hidden;
+    position: relative;
+}
+
+.video-title {
+    text-align: center;
+    color: white;
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
         .video-container {
     width: 50%; /* هذا سيجعل الفيديو يأخذ نصف عرض الصفحة فقط */
     max-width: 500px; /* لن يتجاوز هذا العرض مهما كانت الشاشة كبيرة */
