@@ -15,30 +15,14 @@
     padding: 20px;
 }
 
-.video-container {
-    width: 45%; /* تصغير الحجم ليأخذ كل فيديو أقل من نصف الشاشة */
-    max-width: 400px; /* تحديد أقصى عرض للمشغل */
-    border-radius: 15px;
-    background: #000;
-    overflow: hidden;
-    position: relative;
-}
-
+.
 .video-title {
     text-align: center;
     color: white;
     margin-top: 10px;
     font-size: 0.9rem;
 }
-        .video-container {
-    width: 50%; /* هذا سيجعل الفيديو يأخذ نصف عرض الصفحة فقط */
-    max-width: 500px; /* لن يتجاوز هذا العرض مهما كانت الشاشة كبيرة */
-    margin: 20px auto; /* لتوسيط الفيديو في منتصف الصفحة */
-    border-radius: 12px; /* حواف دائرية ناعمة */
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* ظل خفيف لإبراز الفيديو */
-}
-
+       
 video {
     width: 100%; /* لضمان أن الفيديو يملأ الحاوية الصغيرة */
     display: block;
@@ -275,15 +259,15 @@ video {
             }
         }
         
-        /* حاوية الفيديو */
-.video-container {
+      .video-container {
     position: relative;
-    width: 100%;
-    max-width: 800px;
-    margin: 20px auto;
+    width: 45%; /* حجم صغير ليكونوا بجانب بعضهم */
+    min-width: 300px; /* لضمان عدم صغر الحجم جداً في الموبايل */
+    margin: 10px;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    background: #000;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
 /* الفيديو نفسه */
@@ -742,23 +726,28 @@ video {
         const video = document.getElementById('myVideo');
 const playBtn = document.getElementById('playBtn');
 
-function togglePlay() {
+function togglePlay(videoId) {
+    const video = document.getElementById(videoId);
+    // الحصول على الزر الموجود داخل نفس حاوية الفيديو
+    const btn = video.parentElement.querySelector('.play-main i');
+
     if (video.paused) {
+        // إيقاف أي فيديو آخر يعمل حالياً (اختياري)
+        document.querySelectorAll('video').forEach(v => {
+            if(v.id !== videoId) v.pause();
+        });
+        
         video.play();
-        playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        btn.className = 'fas fa-pause';
     } else {
         video.pause();
-        playBtn.innerHTML = '<i class="fas fa-play"></i>';
+        btn.className = 'fas fa-play';
     }
 }
 
-function forward() { video.currentTime += 10; } // تقديم 10 ثوانٍ
-function rewind() { video.currentTime -= 10; } // تأخير 10 ثوانٍ
-
-function toggleFullScreen() {
-    if (video.requestFullscreen) video.requestFullscreen();
-    else if (video.webkitRequestFullscreen) video.webkitRequestFullscreen();
-}
+// دوال التحكم الإضافية (اختياري)
+function forward(videoId) { document.getElementById(videoId).currentTime += 10; }
+function rewind(videoId) { document.getElementById(videoId).currentTime -= 10; }
     </script>
 </body>
 </html>
