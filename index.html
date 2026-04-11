@@ -7,6 +7,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        .video-container {
+    width: 50%; /* هذا سيجعل الفيديو يأخذ نصف عرض الصفحة فقط */
+    max-width: 500px; /* لن يتجاوز هذا العرض مهما كانت الشاشة كبيرة */
+    margin: 20px auto; /* لتوسيط الفيديو في منتصف الصفحة */
+    border-radius: 12px; /* حواف دائرية ناعمة */
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* ظل خفيف لإبراز الفيديو */
+}
+
+video {
+    width: 100%; /* لضمان أن الفيديو يملأ الحاوية الصغيرة */
+    display: block;
+}
         :root {
             --main-brown: #3e2723;
             --soft-brown: #5d4037;
