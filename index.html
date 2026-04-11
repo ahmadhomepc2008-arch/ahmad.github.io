@@ -361,7 +361,34 @@ video {
                 <div class="time-box"><span class="time-num" id="hw-day">00</span><span class="time-label">ي</span></div>
             </div>
         </div>
-        <div class="card-item"><h3>الواجب التفاعلي</h3><span style="color:#bcaaa4">Interactive Homework</span></div>
+        <div class="card-item" style="flex-direction: column; align-items: stretch;">
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        <div>
+            <h3 style="margin:0; color:var(--main-brown);">الواجب التفاعلي</h3>
+            <small style="color:#bcaaa4">Interactive Homework</small>
+        </div>
+        <i class="fas fa-star" style="color: var(--soft-brown); font-size: 1.2rem;"></i>
+    </div>
+
+    <div id="interactive-hw-container" style="display: none; flex-direction: column; margin-top: 20px; border-top: 2px dashed #efebe9; padding-top: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <span style="color: var(--main-brown); font-weight: 900; font-size: 0.9rem;">قاعدة الانعكاس (Cleft Sentences)</span>
+            <span id="question-number" style="font-weight: bold; color: var(--soft-brown); font-size: 0.8rem;">1 / 5</span>
+        </div>
+
+        <div id="quiz-body">
+            </div>
+
+        <div style="display: flex; justify-content: space-between; gap: 10px; margin-top: 20px;">
+            <button id="prev-btn" class="btn-return" style="padding: 10px; flex: 1; justify-content: center; font-size: 0.8rem;" onclick="changeQuestion(-1)">السابق</button>
+            <button id="next-btn" class="btn-return" style="padding: 10px; flex: 1; justify-content: center; font-size: 0.8rem;" onclick="changeQuestion(1)">التالي</button>
+            <button id="submit-quiz" class="btn-return" style="padding: 10px; flex: 1; justify-content: center; background: #2e7d32; font-size: 0.8rem; display: none;" onclick="calculateResult()">إرسال النتيجة</button>
+        </div>
+
+        <div id="quiz-result" style="margin-top: 15px; text-align: center; display: none; padding: 15px; border-radius: 10px; background: #f1f8e9; color: var(--main-brown); font-weight: bold;"></div>
+    </div>
+</div>
+
         <div class="card-item">
             <div><h3>الواجبات المتاحة</h3><small style="color:#bcaaa4">Available Homeworks</small></div>
             <a href="https://drive.google.com/file/d/11S9JevbFG3qx_a_KGnWeBaxQsNJ4OurW/view" target="_blank" class="homework-link-btn">
@@ -706,20 +733,27 @@ video {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function startCountdown(targetDateStr, elementsPrefix) {
-            const targetDate = new Date(targetDateStr).getTime();
-            setInterval(function() {
-                const now = new Date().getTime();
-                const distance = targetDate - now;
-                if (distance > 0) {
-                    document.getElementById(elementsPrefix + "day").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
-                    document.getElementById(elementsPrefix + "hour").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    document.getElementById(elementsPrefix + "min").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                    document.getElementById(elementsPrefix + "sec").innerText = Math.floor((distance % (1000 * 60)) / 1000);
-                }
-            }, 1000);
-        }
+    function startCountdown(targetDateStr, elementsPrefix) {
+    const targetDate = new Date(targetDateStr).getTime();
+    
+    const timer = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
 
+        if (distance > 0) {
+            document.getElementById(elementsPrefix + "day").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+            document.getElementById(elementsPrefix + "hour").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById(elementsPrefix + "min").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById(elementsPrefix + "sec").innerText = Math.floor((distance % (1000 * 60)) / 1000);
+        } else {
+            clearInterval(timer); 
+            if(elementsPrefix === "hw-") {
+                document.getElementById('interactive-hw-container').style.display = 'flex';
+                updateQuestion(); 
+            }
+        }
+    }, 1000);
+}
         startCountdown("April 13, 2026 17:00:00", "hw-");
         startCountdown("April 14, 2026 17:00:00", "ex-");
 
@@ -748,6 +782,77 @@ function togglePlay(videoId) {
 // دوال التحكم الإضافية (اختياري)
 function forward(videoId) { document.getElementById(videoId).currentTime += 10; }
 function rewind(videoId) { document.getElementById(videoId).currentTime -= 10; }
+
+let currentStep = 1;
+const totalQuestions = 5;
+let userAnswers = {};
+
+const questionsData = [
+    { q: "Huda won the prize for Art last year. (The person who...)", options: { a: "The person who won the prize for Art last year was Huda.", b: "The person who wins the prize for Art last year is Huda.", c: "The person who won the prize for Art last year is Huda.", d: "Huda was the person who win the prize." }, correct: "a" },
+    { q: "The Olympic Games were held in London in 2012. (The place...)", options: { a: "The place where the Olympic Games held was London.", b: "The place where the Olympic Games were held in 2012 was London.", c: "London was the place which the Olympic Games held.", d: "The place which the Olympic Games were held is London." }, correct: "b" },
+    { q: "I like Geography most of all. (The subject...)", options: { a: "The subject who I like most of all is Geography.", b: "Geography is the subject where I like.", c: "The subject that I like most of all is Geography.", d: "The thing which I like is Geography subject." }, correct: "c" },
+    { q: "Al-Kindi is especially famous for his work in Geometry. (It is...)", options: { a: "It is Al-Kindi who is especially famous for his work in Geometry.", b: "It is Al-Kindi which is especially famous for Geometry.", c: "It was Al-Kindi who is especially famous for Geometry.", d: "It is Geometry who Al-Kindi is famous for." }, correct: "a" },
+    { q: "The heat made the journey unpleasant. (The thing...)", options: { a: "The thing who made the journey unpleasant was the heat.", b: "The heat was the thing where made the journey unpleasant.", c: "The thing that made the journey unpleasant was the heat.", d: "The thing which make the journey unpleasant is the heat." }, correct: "c" }
+];
+
+function updateQuestion() {
+    const quizBody = document.getElementById('quiz-body');
+    const q = questionsData[currentStep - 1];
+    let optionsHtml = '';
+
+    for (const [key, text] of Object.entries(q.options)) {
+        const isChecked = userAnswers[currentStep] === key ? 'checked' : '';
+        optionsHtml += `
+            <label style="display: flex; align-items: center; gap: 10px; background: #fbfbfb; padding: 12px; border: 1px solid #eee; border-radius: 12px; margin-bottom: 8px; cursor: pointer;">
+                <input type="radio" name="quiz-opt" value="${key}" ${isChecked} onchange="userAnswers[${currentStep}]='${key}'" style="accent-color: var(--main-brown); width: 18px; height: 18px;">
+                <span style="font-size: 0.9rem; color: #444;"><strong>${key.toUpperCase()}.</strong> ${text}</span>
+            </label>
+        `;
+    }
+
+    quizBody.innerHTML = `
+        <p style="font-weight: bold; font-size: 0.95rem; margin-bottom: 15px; color: #5d4037;">السؤال ${currentStep}: ${q.q}</p>
+        ${optionsHtml}
+    `;
+    
+   // بدلاً من السطر القديم، استخدم هذا:
+   document.getElementById('question-number').innerText = '${currentStep} / ${totalQuestions}';
+    document.getElementById('prev-btn').style.visibility = currentStep === 1 ? 'hidden' : 'visible';
+    document.getElementById('next-btn').style.display = currentStep === totalQuestions ? 'none' : 'flex';
+    document.getElementById('submit-quiz').style.display = currentStep === totalQuestions ? 'flex' : 'none';
+}
+
+function changeQuestion(step) {
+    if (step === 1 && !userAnswers[currentStep]) {
+        alert("لطفاً، اختر إجابة للمتابعة");
+        return;
+    }
+    currentStep += step;
+    updateQuestion();
+}
+
+function calculateResult() {
+    if (!userAnswers[currentStep]) {
+        alert("أجب على السؤال الأخير أولاً");
+        return;
+    }
+    let score = 0;
+    questionsData.forEach((q, index) => {
+        if (userAnswers[index + 1] === q.correct) score++;
+    });
+    
+    document.getElementById('quiz-body').style.display = 'none';
+    document.getElementById('next-btn').style.display = 'none';
+    document.getElementById('prev-btn').style.display = 'none';
+    document.getElementById('submit-quiz').style.display = 'none';
+    
+    const resultDiv = document.getElementById('quiz-result');
+    resultDiv.style.display = 'block';
+   // بدلاً من السطر القديم، استخدم هذا:
+resultDiv.innerHTML = 'النتيجة النهائية: ${score} من ${totalQuestions}';
+
+}
+        
     </script>
 </body>
 </html>
