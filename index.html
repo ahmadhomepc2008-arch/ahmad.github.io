@@ -238,6 +238,48 @@
                 padding: 7px;
             }
         }
+        
+        /* حاوية الفيديو */
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* الفيديو نفسه */
+#myVideo { width: 100%; display: block; }
+
+/* طبقة الأزرار الشفافة */
+.video-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    opacity: 0; /* مخفية في البداية */
+    transition: opacity 0.3s ease;
+}
+
+/* تظهر عند وضع الماوس أو اللمس */
+.video-container:hover .video-overlay { opacity: 1; }
+
+.control-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    font-size: 1.5rem;
+}
+
     </style>
 </head>
 <body>
@@ -577,16 +619,17 @@
         <div class="back-container"><div class="btn-return" onclick="showMenu()"><i class="fas fa-chevron-right"></i><span>العودة للقائمة الرئيسية</span></div></div>
     </section>
     <section id="video-section" class="content-section">
-    <div class="card-item" style="flex-direction: column; align-items: center; gap: 20px;">
-        <div style="text-align: center;">
-            <h3 style="margin:0; color:var(--main-brown);">الفيديو التعليمي</h3>
-            <small style="color:#bcaaa4">Educational Video</small>
-        </div>
-        
-        <video width="100%" controls style="border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+    <div class="video-container">
+        <video id="myVideo">
             <source src="video.mp4" type="video/mp4">
-            متصفحك لا يدعم تشغيل الفيديو، يرجى تحديث المتصفح.
         </video>
+
+        <div class="video-overlay">
+            <button class="control-btn" onclick="rewind()"> <i class="fas fa-undo"></i> </button>
+            <button class="control-btn play-main" id="playBtn" onclick="togglePlay()"> <i class="fas fa-play"></i> </button>
+            <button class="control-btn" onclick="forward()"> <i class="fas fa-redo"></i> </button>
+            <button class="control-btn fs-btn" onclick="toggleFullScreen()"> <i class="fas fa-expand"></i> </button>
+        </div>
     </div>
     
     <div class="back-container">
@@ -648,6 +691,27 @@
 
         startCountdown("April 13, 2026 17:00:00", "hw-");
         startCountdown("April 14, 2026 17:00:00", "ex-");
+
+        const video = document.getElementById('myVideo');
+const playBtn = document.getElementById('playBtn');
+
+function togglePlay() {
+    if (video.paused) {
+        video.play();
+        playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+    } else {
+        video.pause();
+        playBtn.innerHTML = '<i class="fas fa-play"></i>';
+    }
+}
+
+function forward() { video.currentTime += 10; } // تقديم 10 ثوانٍ
+function rewind() { video.currentTime -= 10; } // تأخير 10 ثوانٍ
+
+function toggleFullScreen() {
+    if (video.requestFullscreen) video.requestFullscreen();
+    else if (video.webkitRequestFullscreen) video.webkitRequestFullscreen();
+}
     </script>
 </body>
 </html>
