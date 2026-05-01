@@ -730,12 +730,12 @@ video {
         </a>
     </div>
 
-    <div class="back-container">
-        <div class="btn-return" onclick="showMenuWithStop()">
-            <i class="fas fa-chevron-right"></i>
-            <span>العودة للقائمة الرئيسية</span>
-        </div>
+   <div class="back-container">
+    <div class="btn-return" onclick="showMenuWithStop()">
+        <i class="fas fa-chevron-right"></i>
+        <span>العودة للقائمة الرئيسية</span>
     </div>
+</div>
 </section>
 
     <section id="schedule-section" class="content-section">
@@ -893,28 +893,23 @@ resultDiv.innerHTML = 'النتيجة النهائية: ${score} من ${totalQue
 
 }
 function playMusicAndShowSection() {
-    // إنشاء رسالة اختيار بسيطة تظهر للطالب
-    if (confirm("هل تريد تشغيل الأغنية أثناء عرض الجدول الوزاري؟")) {
-        // إذا ضغط الطالب "موافق" (نعم)
-        var music = document.getElementById('examMusic');
-        
-        // التأكد من إعادة تشغيل الأغنية من البداية
-        music.currentTime = 0; 
-        
-        var playPromise = music.play();
-
-        if (playPromise !== undefined) {
-            playPromise.then(_ => {
-                console.log("بدأ التشغيل بنجاح");
-            }).catch(error => {
-                console.log("فشل التشغيل: " + error);
-                alert("تأكد من رفع ملف exam-music.mp3 في نفس المجلد");
-            });
-        }
-    }
+    var music = document.getElementById('examMusic');
     
-    // في كل الحالات، سينتقل الطالب للقسم المطلوب
+    // تشغيل الأغنية مباشرة عند النقر
+    music.play().catch(error => {
+        console.log("التشغيل التلقائي واجه قيوداً: " + error);
+    });
+    
+    // الانتقال لقسم الجدول
     showSection('ministry-exams-section');
+}
+
+function showMenuWithStop() {
+    var music = document.getElementById('examMusic');
+    // إيقاف الموسيقى عند العودة للقائمة الرئيسية
+    music.pause();
+    music.currentTime = 0; 
+    showMenu();
 }
     </script>
 </body>
