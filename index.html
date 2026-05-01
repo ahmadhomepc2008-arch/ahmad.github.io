@@ -892,32 +892,21 @@ function calculateResult() {
 resultDiv.innerHTML = 'النتيجة النهائية: ${score} من ${totalQuestions}';
 
 }
-   function playMusicAndShowSection() {
-    var music = document.getElementById('examMusic');
-    
-    // محاولة التشغيل مع معالجة القيود
-    var playPromise = music.play();
+ function playMusicAndShowSection() {
+    // إظهار رسالة تأكيد للطالب
+    const userChoice = confirm("هل ترغب في تشغيل الموسيقى أثناء تصفح الجدول؟");
 
-    if (playPromise !== undefined) {
-        playPromise.then(_ => {
-            // بدأ التشغيل بنجاح
-            console.log("Music started");
-        }).catch(error => {
-            // فشل التشغيل (غالباً بسبب قيود المتصفح)
-            console.log("Playback prevented: " + error);
+    if (userChoice) {
+        // إذا اختار نعم
+        var music = document.getElementById('examMusic');
+        music.play().catch(error => {
+            console.log("التشغيل تعذر: " + error);
         });
     }
-    
+
+    // في كلتا الحالتين سيفتح قسم الجدول
     showSection('ministry-exams-section');
 }
-
-function showMenuWithStop() {
-    var music = document.getElementById('examMusic');
-    music.pause();
-    music.currentTime = 0; 
-    showMenu();
-}
-        
     </script>
 </body>
 </html>
