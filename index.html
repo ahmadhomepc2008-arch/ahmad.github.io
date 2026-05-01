@@ -892,19 +892,28 @@ function calculateResult() {
 resultDiv.innerHTML = 'النتيجة النهائية: ${score} من ${totalQuestions}';
 
 }
- function playMusicAndShowSection() {
-    // إظهار رسالة تأكيد للطالب
-    const userChoice = confirm("هل ترغب في تشغيل الموسيقى أثناء تصفح الجدول؟");
-
-    if (userChoice) {
-        // إذا اختار نعم
+function playMusicAndShowSection() {
+    // إنشاء رسالة اختيار بسيطة تظهر للطالب
+    if (confirm("هل تريد تشغيل الأغنية أثناء عرض الجدول الوزاري؟")) {
+        // إذا ضغط الطالب "موافق" (نعم)
         var music = document.getElementById('examMusic');
-        music.play().catch(error => {
-            console.log("التشغيل تعذر: " + error);
-        });
-    }
+        
+        // التأكد من إعادة تشغيل الأغنية من البداية
+        music.currentTime = 0; 
+        
+        var playPromise = music.play();
 
-    // في كلتا الحالتين سيفتح قسم الجدول
+        if (playPromise !== undefined) {
+            playPromise.then(_ => {
+                console.log("بدأ التشغيل بنجاح");
+            }).catch(error => {
+                console.log("فشل التشغيل: " + error);
+                alert("تأكد من رفع ملف exam-music.mp3 في نفس المجلد");
+            });
+        }
+    }
+    
+    // في كل الحالات، سينتقل الطالب للقسم المطلوب
     showSection('ministry-exams-section');
 }
     </script>
